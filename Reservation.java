@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Reservation {
-    public enum statusType {confirmed, inWaitlist, rejected, checkedIn, expired, checkedOut}
-    private double reservationCode;
-    //private Room roomID;
-    //private Guest guestID;
+    public enum statusType {confirmed, checkedIn, expired, checkedOut}
+    private int reservationCode;
+    private int roomID;
+    private String guest;
     private boolean creditPayment;
     private int numAdults;
     private int numChildren;
@@ -13,23 +13,33 @@ public class Reservation {
     private statusType status;
     private String remarks;
 
-    public Reservation(double code){
+    public Reservation(int code, int room, String g, boolean cre,
+                       int adult, int child, Date chkin, Date chkout, statusType stat, String rem){
         reservationCode = code;
+        roomID = room;
+        guest = g;
+        creditPayment = cre;
+        numAdults = adult;
+        numChildren = child;
+        checkInDate = chkin;
+        checkOutDate = chkout;
+        status = stat;
+        remarks = rem;
     };
 
-    public void setReservationCode(double code){
+    public void setReservationCode(int code){
         reservationCode = code;
     }
 
-    public double getReservationCode() {
+    public int getReservationCode() {
         return reservationCode;
     }
 
-    /*public Guest getAssGuest(){ return associatedGuest }
-    public void setAssGuest(Guest g){ associatedGuest = g}
-    public Room getRoomType(){ return roomType}
-    public void setRoomType(Room type){ roomType = type;}
-     */
+    public String getGuest(){ return guest; }
+    public void setGuest(String g){ guest = g; }
+    public int getRoomID(){ return roomID; }
+    public void setRoomID(int r ){ roomID = r;}
+
     public statusType getStatus() {
         return status;
     }
