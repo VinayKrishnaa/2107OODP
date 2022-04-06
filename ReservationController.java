@@ -1,11 +1,12 @@
 import java.util.*;
+import java.text.SimpleDateFormat;
 
-public class ReservationController2{
+public class ReservationController{
     ArrayList<Reservation> curReservations;
     ArrayList<Reservation> pastReservations;
     private int totalR;
 
-    public ReservationController2(){
+    public ReservationController(){
         int i;
         curReservations = new ArrayList<Reservation>();
         pastReservations = new ArrayList<Reservation>();
@@ -13,10 +14,12 @@ public class ReservationController2{
     }
     public void createReservation(boolean now){
         Scanner sc = new Scanner(System.in);
-        int i, a, c, r, g, y1, m1, d1, y2, m2, d2;
+        int i, a, c, r, y1, m1, d1, y2, m2, d2;
+        String g;
         Date in, out;
         boolean cre;
         String rem;
+        Reservation.statusType stat;
         try{
             //No of Guest
             System.out.println("Enter the number of Adults");
@@ -52,46 +55,124 @@ public class ReservationController2{
             }
 
             //Room Type
-            /*System.out.println("Enter the Room type you want");
+            System.out.println("Enter the Room type you want");
             System.out.println("(1) Spectacular");
             System.out.println("(2) Marvelous");
             System.out.println("(3) Wonderful");
             System.out.println("(4) Away");
             System.out.println("(5) Suites");
-            switch(sc.nextInt()){
+            int j, k;
+            r = 0;
+            switch(sc.nextInt()) {
                 case 1:
-                        callCheckRoomAvail()
-                        pass in the enum value
-                        check for room availability
-                        set room status to reserve
-                        return roomID as r
+                    for (j = 11; j <= 15; j++) {
+                        k = 0;
+                        for (Reservation R : curReservations) {
+                            if (R.getRoomID() == j) {
+                                if(R.getCheckInDate().compareTo(out)>=0 && in.compareTo(R.getCheckOutDate()) >= 0){
+                                    k = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(k == 0){
+                            r = j;
+                            break;
+                        }
+                    }
+                    if(j == 16) throw new Exception("Not enough rooms available");
+                    break;
+                case 2:
+                    for (j = 21; j <= 25; j++) {
+                        k = 0;
+                        for (Reservation R : curReservations) {
+                            if (R.getRoomID() == j) {
+                                if(R.getCheckInDate().compareTo(out)>=0 && in.compareTo(R.getCheckOutDate()) >= 0){
+                                    k = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(k == 0){
+                            r = j;
+                            break;
+                        }
+                    }
+                    if(j == 26) throw new Exception("Not enough rooms available");
+                    break;
+                case 3:
+                    for (j = 31; j <= 35; j++) {
+                        k = 0;
+                        for (Reservation R : curReservations) {
+                            if (R.getRoomID() == j) {
+                                if(R.getCheckInDate().compareTo(out)>=0 && in.compareTo(R.getCheckOutDate()) >= 0){
+                                    k = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(k == 0){
+                            r = j;
+                            break;
+                        }
+                    }
+                    if(j == 36) throw new Exception("Not enough rooms available");
+                    break;
+                case 4:
+                    for (j = 41; j <= 45; j++) {
+                        k = 0;
+                        for (Reservation R : curReservations) {
+                            if (R.getRoomID() == j) {
+                                if(R.getCheckInDate().compareTo(out)>=0 && in.compareTo(R.getCheckOutDate()) >= 0){
+                                    k = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(k == 0){
+                            r = j;
+                            break;
+                        }
+                    }
+                    if(j == 46) throw new Exception("Not enough rooms available");
+                    break;
+                case 5:
+                    for (j = 51; j <= 55; j++) {
+                        k = 0;
+                        for (Reservation R : curReservations) {
+                            if (R.getRoomID() == j) {
+                                if(R.getCheckInDate().compareTo(out)>=0 && in.compareTo(R.getCheckOutDate()) >= 0){
+                                    k = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if(k == 0){
+                            r = j;
+                            break;
+                        }
+                    }
+                    if(j == 56) throw new Exception("Not enough rooms available");
+                    break;
+
             }
 
-            // Guest Details, call method to get guest details
-                call the getGuestdetails method;
-                to create the Guest object
-                return guestID as g
+            // Guest name
+            System.out.println("Enter the Guest Full Name");
+            g = sc.nextLine();
 
-
-
-             */
-            r = 0;
-            g = 0;
             System.out.println("Pay by credit? 1 for Yes, 0 for No");
             i = sc.nextInt();
-            if(i == 1){
-                cre = true;
-            }
-            else{
-                cre = false;
-            }
+            if(i == 1) cre = true;
+            else cre = false;
+
+            if(now) stat = Reservation.statusType.checkedIn;
+            else stat = Reservation.statusType.confirmed;
+
             System.out.println("Set remarks");
             rem = sc.nextLine();
-            /*
-            Need to check the rooms to see the vacancy
-            then followed by setting status based on vacancy
-             */
-            curReservations.add(new Reservation(totalR++, r, g, cre, a, c, in, out, Reservation.statusType.confirmed, rem));
+
+            curReservations.add(new Reservation(totalR++, r, g, cre, a, c, in, out, stat, rem));
             System.out.println("Success");
             printReservation(curReservations.get(curReservations.size()-1).getReservationCode());
 
@@ -101,32 +182,35 @@ public class ReservationController2{
         return;
     }
 
-    public void copyReservation(Reservation r1, Reservation r2){
-        r1.setReservationCode(r2.getReservationCode());
-        /*
-        r1.setRoomType(r2.getRoomType());
-        r1.setAssociatedGuest(r2.getAssGuest());
-         */
-        r1.setCreditPayment(r2.getCreditPayment());
-        r1.setAdult(r2.getAdult());
-        r1.setChildren(r2.getChildren());
-        r1.setCheckInDate(r2.getCheckInDate());
-        r1.setCheckOutDate(r2.getCheckOutDate());
-        r1.setRemarks(r2.getRemarks());
-        r1.updateStatus(r2.getStatus());
-    }
-
     public void printReservation(int code) {
         int i;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         for(Reservation R : curReservations) {
             if (R.getReservationCode() == code) {
                 System.out.println("Reservation Code:" + R.getReservationCode());
-                // Print Room type details (get from room controller)
-                // Print Guest details (get from Guest controller)
+                i = R.getRoomID();
+                switch(i/10){
+                    case 1:
+                        System.out.println("Spectacular "+ i);
+                        break;
+                    case 2:
+                        System.out.println("Marvelous " + i);
+                        break;
+                    case 3:
+                        System.out.println("Wonderful " + i);
+                        break;
+                    case 4:
+                        System.out.println("Away " + i);
+                        break;
+                    case 5:
+                        System.out.println("Suites " + i);
+                        break;
+                }
+                System.out.println("Guest:" + R.getGuest());
                 System.out.println("Adults:" + R.getAdult());
                 System.out.println("Children:" + R.getChildren());
-                System.out.println("Check In Date:" + R.getCheckInDate());
-                System.out.println("Check Out Date:" + R.getCheckOutDate());
+                System.out.println("Check In Date:" + simpleDateFormat.format(R.getCheckInDate()));
+                System.out.println("Check Out Date:" + simpleDateFormat.format(R.getCheckOutDate()));
                 System.out.println("Status:" + R.getStatus());
                 System.out.println("Remarks:" + R.getRemarks());
                 return;
@@ -144,11 +228,10 @@ public class ReservationController2{
         return;
     }
 
-    public void checkIn(double code){
+    public void reservationCheckIn(double code){
         for(Reservation R : curReservations) {
             if (R.getReservationCode() == code) {
                 R.updateStatus(Reservation.statusType.checkedIn);
-                //call room controller to check in the room
                 System.out.println("Guest check in");
                 return;
             }
