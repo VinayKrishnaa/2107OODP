@@ -15,10 +15,9 @@ public class ReservationController{
     public void createReservation(boolean now){
         Scanner sc = new Scanner(System.in);
         int i, a, c, r, y1, m1, d1, y2, m2, d2;
-        String g;
         Date in, out;
         boolean cre;
-        String rem;
+        String rem, g;
         Reservation.statusType stat;
         try{
             //No of Guest
@@ -158,7 +157,8 @@ public class ReservationController{
             }
 
             // Guest name
-            System.out.println("Enter the Guest Full Name");
+            System.out.print("Enter the Guest Full Name: ");
+            sc.nextLine();
             g = sc.nextLine();
 
             System.out.println("Pay by credit? 1 for Yes, 0 for No");
@@ -169,7 +169,8 @@ public class ReservationController{
             if(now) stat = Reservation.statusType.checkedIn;
             else stat = Reservation.statusType.confirmed;
 
-            System.out.println("Set remarks");
+            System.out.print("Set remarks: ");
+            sc.nextLine();
             rem = sc.nextLine();
 
             curReservations.add(new Reservation(totalR++, r, g, cre, a, c, in, out, stat, rem));
@@ -228,28 +229,31 @@ public class ReservationController{
         return;
     }
 
-    public void reservationCheckIn(double code){
+    public int reservationCheckIn(int code){
         for(Reservation R : curReservations) {
             if (R.getReservationCode() == code) {
                 R.updateStatus(Reservation.statusType.checkedIn);
                 System.out.println("Guest check in");
-                return;
+                return R.getRoomID();
             }
         }
         System.out.println("Reservation not in system");
+        return 0;
     }
 
-    public void reservationCheckOut(double code){
+    public int reservationCheckOut(int code){
         for(Reservation R : curReservations) {
             if (R.getReservationCode() == code) {
                 R.updateStatus(Reservation.statusType.checkedOut);
                 pastReservations.add(R);
+                int rID = R.getRoomID();
                 curReservations.remove(R);
-                }
                 System.out.println("Guest checked out");
-                return;
+                return rID;
+                }
             }
         System.out.println("Reservation not in system");
+        return 0;
     }
 
 
