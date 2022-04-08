@@ -43,7 +43,6 @@ public class HotelView{
                     System.out.println("|1. Check in");
                     System.out.println("|2. Check out");
                     System.out.println("|3. Walk-in guest");
-                    System.out.println("|4. Create reservation");
                     switch(sc.nextInt()) {
                         case 1:
                             System.out.println("Enter Reservation Code");
@@ -61,11 +60,7 @@ public class HotelView{
                         case 3:
                             RC.createReservation(true);
                             // Save RC in txt
-                            break;
-                        case 4:
-                            RC.createReservation(false);
-                            // Save RC in txt
-                            break;
+                            break;                   
                     }
                     break;
                 case 3:
