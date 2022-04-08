@@ -11,9 +11,6 @@ public class HotelView{
 
     public static void main(String[] args) throws IOException {
 
-        ReservationController RC = new ReservationController();
-        //read RC from txt
-
         System.out.println("Welcome to W Hotel!");
         System.out.println("Please enter your option: ");
 
