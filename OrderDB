@@ -1,0 +1,55 @@
+package sce.cz2002.project;
+
+/*Class to read and write menu to a text file. 
+ * Data saved here even when program is not running. */
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.Writer;
+
+
+public class OrderDB {
+	// create instance of menuDB
+	public static OrderDB instance = null;
+	public static OrderDB getInstance() {
+		if (instance == null)
+			instance = new OrderDB();
+		return instance;
+	}
+	
+	// write the current arraylist data of menu/orders into the text file for future usage
+	public void saveData(OrderItem orders) {
+		try {
+			String lineSep = System.lineSeparator();
+			
+			FileWriter fw = new FileWriter("orders.txt");
+			Writer output = new BufferedWriter(fw);
+
+			for (int i = 0; i < orders.size(); i++) {
+				output.write(orders.get(i).toString() + lineSep);
+			}
+
+			output.close();
+		} catch(Exception ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
+	// read the data from text file and add into menu/orders arraylist 
+	public void readData(ArrayList<OrderItem> orders) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("orders.txt"));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				String[] split = line.split(" ");
+			    orders.add(new OrderItem(split[1], Float.parseFloat(split[2]), Integer.parseInt(split[3]), split[4], split[5]));
+			}
+			reader.close();
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+}
+
