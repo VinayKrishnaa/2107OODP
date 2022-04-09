@@ -4,22 +4,19 @@ package sce.cz2002.project;
    1. Name 
    2. Price
    3. Description of item
-   4. Preparation Time (in minutes denoted as int)
  */
 
 public class menuItem{ 
 
-	public menuItem(String name, String description, float price, int preparationTime) {
+	public menuItem(String name, String description, float price) {
 		this.price = price;
 		this.name = name;
 		this.description = description;
-		this.preparationTime = preparationTime;
 	}
 
 	private float price;
     private String name;
     private String description;
-    private int preparationTime;
 
     public float getPrice() {
         return this.price;
@@ -45,17 +42,10 @@ public class menuItem{
         this.description = description;
     }
 
-    public int getPreparationTime() {
-        return this.preparationTime;
-    }
-
-    public void setPreparationTime(int preparationTime) {
-        this.preparationTime = preparationTime;
-    }
     
     // returns the variables of each menu item as a string 
     @Override 
     public String toString() {
-    	return " " + name + " " + description + " " + price + " " + preparationTime + " ";
+    	return " " + name + " " + description + " " + price + " ";
     }
 }
