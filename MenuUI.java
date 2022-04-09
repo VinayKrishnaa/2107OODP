@@ -33,45 +33,56 @@ public class MenuUI{
 				System.out.println("(2) Update menu item");
 				System.out.println("(3) Remove menu item");
 				System.out.println("(4) Order room service");
-				System.out.println("(5) Show current orders");
-				System.out.println("(6) Show menu");
-				System.out.println("(7) Exit");
+				System.out.println("(5) Update order status");
+				System.out.println("(6) Show current orders");
+				System.out.println("(7) Show menu");
+				System.out.println("(8) Exit");
 				switch(sc.nextInt()) {
-					case 1:
+					case 1:									// add new item to menu
 						System.out.println("Enter name of item");
 						System.out.println("Enter description of item");
 						System.out.println("Enter price of item");
-						System.out.println("Enter preparation time of item (in minutes)");
-						m.createItem(sc.next(), sc.next(), sc.nextInt(), sc.nextInt());
+						m.createItem(sc.next(), sc.next(), sc.nextInt());
 						MenuDB.getInstance().saveData(m.menuItems);
 						break;
-					case 2:
+					case 2:									// update a menu item
 						System.out.println("Enter index of item to update");
 						System.out.println("Enter new name of item");
 						System.out.println("Enter new description of item");
 						System.out.println("Enter new price of item");
 						System.out.println("Enter new preparation time of item (in minutes)");
-						m.updateMenu(sc.nextInt(), sc.next(), sc.next(), sc.nextInt(), sc.nextInt());
+						m.updateMenu(sc.nextInt(), sc.next(), sc.next(), sc.nextInt());
 						MenuDB.getInstance().saveData(m.menuItems);
 						break;
-					case 3:
+					case 3:									// remove a menu item
 						System.out.println("Enter index of item to remove");
 						m.removeItem(sc.nextInt());
 						MenuDB.getInstance().saveData(m.menuItems);
 						break;
-					case 4:
+					case 4:									// order room service
 						m.printMenu(m.menuItems);
 						System.out.println("Enter ID of item to order");
 						System.out.println("Enter room ID");
-						m.orderItem(sc.nextInt(), sc.nextInt());
+						System.out.println("Enter special remarks")
+						m.orderItem(sc.nextInt(), sc.nextInt(), sc.next());
+						OrderDB.getInstance().saveData(m.orders);
 						break;
-					case 5:
+					case 5:									// update order status
+						OrderDB.getInstance().readData(orders);
+						System.out.println("Enter ID of order to update status");
+						System.out.println("Enter status to be updated to:");
+						System.out.println("(1) Confirmed\n(2) Preparing\n(3) Delivered");
+						m.updateOrder(sc.nextInt(), sc.nextInt());
+						// call billing over here to update payment
+						break;
+					case 6:									// show current orders
+						OrderDB.getInstance().readData(orders);
 						m.currentOrders();
 						break;
-					case 6:
+					case 7:									// print menu
 						m.printMenu(m.menuItems);
 						break;
-					case 7:
+					case 8:
 						System.exit(0);
 						break;
 					default:
