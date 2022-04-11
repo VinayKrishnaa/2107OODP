@@ -1,6 +1,6 @@
 import java.time.*;
 import java.util.*;
-
+ 
 public class PaymentController {
 	//instance variables
 	private Bill[] pastBills; //for this array, prolly need to make it large because it will grow with time. then can continuously compare numofPastBills with the fixed size array and if is going to be full alr then can use the array's .copyOf() method to shift all data to a bigger array

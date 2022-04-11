@@ -92,4 +92,4 @@ public class Bill {
 	public boolean getPaymentType() {
 		return paymentType;
 	}
-}
+} 
