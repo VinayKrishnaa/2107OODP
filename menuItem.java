@@ -19,7 +19,7 @@ public class menuItem{
     private String description;
 
     public float getPrice() {
-        return this.price;
+        return price;
     }
 
     public void setPrice(float price) {
@@ -27,7 +27,7 @@ public class menuItem{
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
