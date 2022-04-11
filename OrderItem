@@ -50,7 +50,7 @@ public class OrderItem{
 	// returns the variables of each order item as a string
 	@Override
 	public String toString() {
-		return " " + name + " " + description + " " + price + " " + preparationTime + " " + roomID + " ";
+		return " " + name + " " + price + " " + roomID + " " + remarks + " " + status + " ";
 	}
 
 }
