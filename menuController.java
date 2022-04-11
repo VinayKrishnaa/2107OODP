@@ -44,9 +44,9 @@ public class menuController{
     }
 
     // select an item from the menu and add it into order list
-    public void orderItem(int index, int roomID,  String remarks){
-    	orders.add(new OrderItem(menuItems.get(index).getName(), menuItems.get(index).getPrice(), roomID, "Confirmed", remarks));
-    	OrderDB.getInstance().saveData();
+    public void orderItem(int index, int roomID,  String remarks, ArrayList<menuItem> arr){
+    	orders.add(new OrderItem(arr.get(index).getName(), arr.get(index).getPrice(), roomID, "Confirmed", remarks));
+    	
     }
     
     // prints out current running orders 
@@ -68,14 +68,12 @@ public class menuController{
     }*/
     
     public void printMenu(ArrayList<menuItem> arr) {
-    	System.out.println(arr.size());
     	int index = 0;
     	for (index = 0; index < arr.size(); index++) {
     		System.out.println("Item " + index + ":" +
 			    				"{Name: " + arr.get(index).getName() + "\n" +
 			    				"Description: " + arr.get(index).getDescription() + "\n" +
-			    				"Price: $" + arr.get(index).getPrice() + "\n" +
-			    				"Preparation Time: " + arr.get(index).getPreparationTime() + "mins}\n");
+			    				"Price: $" + arr.get(index).getPrice() + "\n");
     	}
     }
 
