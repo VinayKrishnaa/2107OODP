@@ -1,0 +1,3 @@
+class Wonderful extends Room{
+
+}
