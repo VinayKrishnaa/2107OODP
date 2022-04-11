@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 
 
 public class OrderDB {
@@ -20,7 +21,7 @@ public class OrderDB {
 	}
 	
 	// write the current arraylist data of menu/orders into the text file for future usage
-	public void saveData(OrderItem orders) {
+	public void saveData(ArrayList<OrderItem> orders) {
 		try {
 			String lineSep = System.lineSeparator();
 			
@@ -44,7 +45,7 @@ public class OrderDB {
 			String line;
 			while ((line = reader.readLine()) != null) {
 				String[] split = line.split(" ");
-			    orders.add(new OrderItem(split[1], Float.parseFloat(split[2]), Integer.parseInt(split[3]), split[4], split[5]));
+			    orders.add(new OrderItem(split[1], Float.parseFloat(split[2]), Integer.parseInt(split[3]), split[4], split[5] + " " + split[6]));
 			}
 			reader.close();
 		} catch(Exception ex) {
@@ -52,4 +53,3 @@ public class OrderDB {
 		}
 	}
 }
-

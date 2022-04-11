@@ -25,6 +25,7 @@ public class MenuUI{
 	public void displayOptions() throws IOException {
 		menuController.createInstance();
 		MenuDB.getInstance().readData(m.menuItems);
+		OrderDB.getInstance().readData(m.orders);
 		Scanner sc = new Scanner(System.in);
 		try {
 			do {
@@ -61,22 +62,24 @@ public class MenuUI{
 						break;
 					case 4:									// order room service
 						m.printMenu(m.menuItems);
-						System.out.println("Enter ID of item to order");
+						System.out.println("Enter index of item to order");
 						System.out.println("Enter room ID");
-						System.out.println("Enter special remarks")
-						m.orderItem(sc.nextInt(), sc.nextInt(), sc.next());
+						System.out.println("Enter special remarks");
+						int index = sc.nextInt();
+						int roomID = sc.nextInt();
+						sc.nextLine();
+						m.orderItem(index, roomID, sc.nextLine(), m.menuItems);
 						OrderDB.getInstance().saveData(m.orders);
 						break;
 					case 5:									// update order status
-						OrderDB.getInstance().readData(orders);
 						System.out.println("Enter ID of order to update status");
 						System.out.println("Enter status to be updated to:");
 						System.out.println("(1) Confirmed\n(2) Preparing\n(3) Delivered");
 						m.updateOrder(sc.nextInt(), sc.nextInt());
+						OrderDB.getInstance().saveData(m.orders);
 						// call billing over here to update payment
 						break;
 					case 6:									// show current orders
-						OrderDB.getInstance().readData(orders);
 						m.currentOrders();
 						break;
 					case 7:									// print menu
