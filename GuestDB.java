@@ -2,7 +2,7 @@ package DB;
 
 /*Class to read and write menu to a text file.
  * Data saved here even when program is not running.
- * currently, does not work properly */
+ */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -30,13 +30,10 @@ public class GuestDB {
     // write the current arraylist data
     public static ArrayList saveData(String filename, ArrayList<Guest> arr) {
         try {
-            //String lineSep = System.lineSeparator();
-
             FileWriter fw = new FileWriter("guest.txt");
             Writer output = new BufferedWriter(fw);
 
             for (int i = 0; i < arr.size(); i++) {
-                //output.write(arr.get(i).toString() + lineSep);
                 output.write(arr.get(i).toString() + SEPARATOR);
             }
             output.close();
@@ -53,8 +50,7 @@ public class GuestDB {
             BufferedReader reader = new BufferedReader(new FileReader("guest.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
-                //String[] split = line.split(" "); // space??
-                String[] split = line.split("|");
+                String[] split = line.split("\\|");
                 arr.add(new Guest(split[1],split[2],split[3],Boolean.parseBoolean(split[4]),split[5],
                         Integer.parseInt(split[6]),split[7],Integer.parseInt(split[8]),
                         split[9], split[10],Integer.parseInt(split[11])));

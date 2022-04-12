@@ -6,7 +6,7 @@ public class Guest {
     private String Name;
     private String Country;
     private String Gender;
-    private Boolean Identity;
+    private Boolean Identity; // false == license | true == passport
     private String IdentityInfo;
     private Integer ContactNumber;
     private String Address;
@@ -141,5 +141,12 @@ public class Guest {
 
     public void setAge(Integer Age) {
         this.Age = Age;
+    }
+
+    // returns the variables of each menu item as a string
+    @Override
+    public String toString() {
+        return "|" + Name + "|" + Country + "|" + Gender + "|" + Identity + "|" + IdentityInfo + "|" + ContactNumber
+                + "|" + Address + "|" + Rcode + "|" + CreditCardNumber + "|" + Email + "|" + Age + "|";
     }
 }
