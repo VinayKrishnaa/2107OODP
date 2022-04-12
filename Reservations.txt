@@ -1,0 +1,4 @@
+ 2 102 true 3 3 12-04-2022 10-05-2022 checkedIn nil
+ 3 301 true 2 2 01-05-2022 22-05-2022 confirmed nil
+ 4 100 true 1 1 23-04-2022 02-05-2022 confirmed nil
+ 5 101 true 1 1 13-04-2022 12-06-2022 confirmed -
