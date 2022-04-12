@@ -1,10 +1,10 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Reservation {
-    public enum statusType {confirmed, checkedIn, expired, checkedOut}
+    public enum statusType {confirmed, waitList, checkedIn, expired, checkedOut}
     private int reservationCode;
     private int roomID;
-    private String guest;
     private boolean creditPayment;
     private int numAdults;
     private int numChildren;
@@ -13,11 +13,10 @@ public class Reservation {
     private statusType status;
     private String remarks;
 
-    public Reservation(int code, int room, String g, boolean cre,
+    public Reservation(int code, int room, boolean cre,
                        int adult, int child, Date chkin, Date chkout, statusType stat, String rem){
         reservationCode = code;
         roomID = room;
-        guest = g;
         creditPayment = cre;
         numAdults = adult;
         numChildren = child;
@@ -35,9 +34,8 @@ public class Reservation {
         return reservationCode;
     }
 
-    public String getGuest(){ return guest; }
-    public void setGuest(String g){ guest = g; }
     public int getRoomID(){ return roomID; }
+
     public void setRoomID(int r ){ roomID = r;}
 
     public statusType getStatus() {
@@ -95,4 +93,12 @@ public class Reservation {
     public void setCheckOutDate(Date out) {
         checkOutDate = out;
     }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        return " " + reservationCode + " " + roomID + " " + creditPayment + " " + numAdults + " " + numChildren + " " + simpleDateFormat.format(checkInDate) + " " + simpleDateFormat.format(checkOutDate) + " " + status + " " + remarks;
+    }
 }
+
