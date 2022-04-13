@@ -1,152 +1,130 @@
 package Class;
 
-import java.util.Date;
-
 public class Guest {
-    private String Name;
-    private String Country;
-    private String Gender;
-    private Boolean Identity; // false == license | true == passport
-    private String IdentityInfo;
-    private Integer ContactNumber;
-    private String Address;
-    private Integer Rcode; // reservation code instead of ID
-    //private Date CheckInDate;
-    //private Boolean MainGuest;
-    private String CreditCardNumber;
-    private String Email;
-    private Integer Age;
+    private String name;
+    private String country;
+    private String gender;
+    private Boolean identity; // false == license | true == passport
+    private String identityInfo;
+    private Integer contactNumber;
+    private String address;
+    private Integer rcode; // reservation code instead of ID
+    private String creditCardNumber;
+    private String email;
+    private Integer age;
 
     public Guest() {
     }
 
-    public Guest(String Name, String Country, String Gender, Boolean Identity,
-                 String IdentityInfo, Integer ContactNumber, String Address,
-                 Integer Rcode, String CreditCardNumber,
-                 String Email, Integer Age) {
-        this.Name = Name;
-        this.Country = Country;
-        this.Gender = Gender;
-        this.Identity = Identity;
-        this.IdentityInfo = IdentityInfo;
-        this.ContactNumber = ContactNumber;
-        this.Address = Address;
-        this.Rcode = Rcode;
-        //this.CheckInDate = CheckInDate;
-        //this.MainGuest = MainGuest;
-        this.CreditCardNumber = CreditCardNumber;
-        this.Email = Email;
-        this.Age = Age;
+    public Guest(String name, String country, String gender, Boolean identity,
+                 String identityInfo, Integer contactNumber, String address,
+                 Integer rcode, String creditCardNumber,
+                 String email, Integer age) {
+        this.name = name;
+        this.country = country;
+        this.gender = gender;
+        this.identity = identity;
+        this.identityInfo = identityInfo;
+        this.contactNumber = contactNumber;
+        this.address = address;
+        this.rcode = rcode;
+        this.creditCardNumber = creditCardNumber;
+        this.email = email;
+        this.age = age;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCountry() {
-        return Country;
+        return country;
     }
 
-    public void setCountry(String Country) {
-        this.Country = Country;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Boolean getIdentity() {
-        return Identity;
+        return identity;
     }
 
-    public void setIdentity(Boolean Identity) {
-        this.Identity = Identity;
+    public void setIdentity(Boolean identity) {
+        this.identity = identity;
     }
 
     public String getIdentityInfo() {
-        return IdentityInfo;
+        return identityInfo;
     }
 
-    public void setIdentityInfo(String IdentityInfo) {
-        this.IdentityInfo = IdentityInfo;
+    public void setIdentityInfo(String identityInfo) {
+        this.identityInfo = identityInfo;
     }
 
     public Integer getContactNumber() {
-        return ContactNumber;
+        return contactNumber;
     }
 
-    public void setContactNumber(Integer ContactNumber) {
-        this.ContactNumber = ContactNumber;
+    public void setContactNumber(Integer contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Integer getRcode() {
-        return Rcode;
+        return rcode;
     }
 
-    public void setRcode(Integer Rcode) {
-        this.Rcode = Rcode;
+    public void setRcode(Integer rcode) {
+        this.rcode = rcode;
     }
-
-    //public Date getCheckInDate() {
-    //    return CheckInDate;
-    //}
-
-    //public void setCheckInDate(Date CheckInDate) {
-    //    this.CheckInDate = CheckInDate;
-    //}
-
-    //public Boolean getMainGuest() {
-    //    return MainGuest;
-    //}
-
-    //public void setMainGuest(Boolean MainGuest) {
-    //    this.MainGuest = MainGuest;
-    //}
 
     public String getCreditCardNumber() {
-        return CreditCardNumber;
+        return creditCardNumber;
     }
 
-    public void setCreditCardNumber(String CreditCardNumber) {
-        this.CreditCardNumber = CreditCardNumber;
+    public void setCreditCardNumber(String creditCardNumber) {
+        this.creditCardNumber = creditCardNumber;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Integer getAge() {
-        return Age;
+        return age;
     }
 
-    public void setAge(Integer Age) {
-        this.Age = Age;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     // returns the variables of each menu item as a string
     @Override
     public String toString() {
-        return "|" + Name + "|" + Country + "|" + Gender + "|" + Identity + "|" + IdentityInfo + "|" + ContactNumber
-                + "|" + Address + "|" + Rcode + "|" + CreditCardNumber + "|" + Email + "|" + Age + "|";
+        return "|" + name + "|" + country + "|" + gender + "|" + identity + "|" + identityInfo + "|" + contactNumber
+                + "|" + address + "|" + rcode + "|" + creditCardNumber + "|" + email + "|" + age + "|";
     }
 }
